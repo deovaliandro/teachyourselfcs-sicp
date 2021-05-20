@@ -52,7 +52,7 @@ result = -37/150 (dif by -2)
 
 ```scheme
 
-(define (num a b c) ((cond ((and (= a b) (= b c)) (sumsquare a b)) ((and (= a b) (= b c) (= a c)) (sumsquare b c)) ((and (not a b) (not a c) (not b c)) (sumsquare a c)))))
+(define (num a b c) (cond ((and (= a b) (= b c)) (sumsquare a b)) ((and (= a b) (= b c) (= a c)) (sumsquare b c)) ((and (not a b) (not a c) (not b c)) (sumsquare a c))))
 
 (define
     (num a b c) (
@@ -66,10 +66,10 @@ result = -37/150 (dif by -2)
 
 (define (sumsquare a b) (+ (* a a) (* b b)))
 
-(define (num a b c) (
+(define (num a b c)
     (cond
         ((and (= a b) (= b c)) (sumsquare a b))
-        ((and (or (= a b) (= b c) (= a c)) (not (and (= a b) (= b c)))) (
+        ((and (or (= a b) (= b c) (= a c)) (and (= a b) (= b c))) (
             (cond
                 ((and (= a b) (> a c))  (sumsquare a b))
                 ((and (= a b) (< a c))  (sumsquare a c))
@@ -79,12 +79,11 @@ result = -37/150 (dif by -2)
                 ((and (= b c) (< a c))  (sumsquare b c))
             )
         ))
-        ((or (not a b) (not a c) (not b c)) (
-            [(or (and (> b c) (> c a)) (and (> c b) (> b a)))  (sumsquare b c)]
-            [(or (and (> a b) (> b c)) (and (> b a) (> a c)))  (sumsquare a b)]
-            [(or (and (> a c) (> c b)) (and (> c a) (> a b)))  (sumsquare a c)]
+        ((or (not (and (= a b) (= a c) (= b c)))) (
+            ((or (and (> b c) (> c a)) (and (> c b) (> b a)))  (sumsquare b c))
+            ((or (and (> a b) (> b c)) (and (> b a) (> a c)))  (sumsquare a b))
+            ((or (and (> a c) (> c b)) (and (> c a) (> a b)))  (sumsquare a c))
         ))
-    )
 ))
 
 [(or (= a b) (= a c) (= b c)) (
