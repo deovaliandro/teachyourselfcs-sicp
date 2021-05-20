@@ -51,60 +51,25 @@ result = -37/150 (dif by -2)
 ### Exercise 1.3
 
 ```scheme
-
-(define (num a b c) (cond ((and (= a b) (= b c)) (sumsquare a b)) ((and (= a b) (= b c) (= a c)) (sumsquare b c)) ((and (not a b) (not a c) (not b c)) (sumsquare a c))))
-
-(define
-    (num a b c) (
-        (cond
-            ((and (= a b) (= b c)) (sumsquare a b))
-            ((and (or (= a b) (= b c) (= a c)) (not (and (= a b) (= b c)))) (sumsquare b c))
-            ((or (not a b) (not a c) (not b c)) (sumsquare a c))
-        )
-    )
-)
-
 (define (sumsquare a b) (+ (* a a) (* b b)))
 
 (define (num a b c)
     (cond
         ((and (= a b) (= b c)) (sumsquare a b))
-        ((and (or (= a b) (= b c) (= a c)) (and (= a b) (= b c))) (
-            (cond
+        ((or (and (= a b) (not (= a c))) (and (= b c) (not (= b a))) (and (= a c) (not (= a b))))
+        (cond
                 ((and (= a b) (> a c))  (sumsquare a b))
                 ((and (= a b) (< a c))  (sumsquare a c))
                 ((and (= a c) (> a b))  (sumsquare a c))
                 ((and (= a c) (< a b))  (sumsquare a c))
                 ((and (= b c) (> a c))  (sumsquare b c))
                 ((and (= b c) (< a c))  (sumsquare b c))
-            )
         ))
-        ((or (not (and (= a b) (= a c) (= b c)))) (
+        ((and (not (= a b)) (not (= b c)))
+        (cond
             ((or (and (> b c) (> c a)) (and (> c b) (> b a)))  (sumsquare b c))
             ((or (and (> a b) (> b c)) (and (> b a) (> a c)))  (sumsquare a b))
             ((or (and (> a c) (> c b)) (and (> c a) (> a b)))  (sumsquare a c))
-        ))
-))
-
-[(or (= a b) (= a c) (= b c)) (
-            (cond
-                [(and (= a b) (> a c))  (sumsquare a b)]
-                [(and (= a b) (> a c))  (sumsquare a b)]
-                [ else                  (sumsquare a c)]
-            )
-            (cond
-                [(and (= a c) (> a b))  (sumsquare a c)]
-                [ else                  (sumsquare a b)]
-            )
-            (cond
-                [(and (= b c) (> a c))  (sumsquare b c)]
-                [ else                  (sumsquare a c)]
-            )
-        )]
-
-        [(or (not a b) (not a c) (not b c)
-            [(or (and (> b c) (> c a)) (and (> c b) (> b a)))  (sumsquare b c)]
-            [(or (and (> a b) (> b c)) (and (> b a) (> a c)))  (sumsquare a b)]
-            [(or (and (> a c) (> c b)) (and (> c a) (> a b)))  (sumsquare a c)]
-        )]
+        )
+)))
 ```
