@@ -1,6 +1,15 @@
 # Structure and Interpretation of Computer Programs
 by AndOr aka @deovaliandro
 
+May 18th, 2021, we started small group in Discord to teach ourself SICP. We only 3 noob programmers.
+The schedule follow [UC Berkeley CS61A - 2011](https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=titleSorter)
+
+All of the homework assignments and labs are here in course reader [vol 1](https://people.eecs.berkeley.edu/~bh/61a-pages/).
+
+The First-day handout (PDF) file contains the schedule. it's 3 classes per week and it has the required readings from sicp.
+
+The libraries that have all those functions [here:](https://people.eecs.berkeley.edu/~bh/downloads/simply/)
+
 ## Building Abstractions with Procedures
 
 ### Exercise 1.1
